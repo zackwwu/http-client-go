@@ -6,18 +6,20 @@ permissions:
   contents: read
 
 jobs:
-  test:
-    name: go-test
+  validation:
+    name: go-validate
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Run Unit Tests
         run: make test
+      - name: Run Lint Check
+        run: make lint
   
   lint:
     name: go-lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Run Unit Tests
+      - name: Run Lint Check
         run: make lint

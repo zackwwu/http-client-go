@@ -14,9 +14,10 @@ jobs:
       - name: Run Unit Tests
         run: make test
   
-  test-1:
-    name: go-test-1
+  lint:
+    name: go-lint
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - name: Run Unit Tests
-        run: make test
+        run: make lint

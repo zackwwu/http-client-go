@@ -17,9 +17,11 @@ jobs:
   lint:
     name: go-lint
     runs-on: ubuntu-latest
-    container:
-      image: golangci/golangci-lint:latest
     steps:
       - uses: actions/checkout@v3
+      - name: Setup Lint Check Environment
+        run: |
+          go get golang.org/x/tools/cmd/goimports
+          go get github.com/golangci/golangci-lint/cmd/golangci-lint
       - name: Run Lint Check
         run: make lint

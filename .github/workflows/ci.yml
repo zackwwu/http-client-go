@@ -17,6 +17,8 @@ jobs:
   lint:
     name: go-lint
     runs-on: ubuntu-latest
+    container:
+      image: golangci/golangci-lint:latest
     steps:
       - uses: actions/checkout@v3
       - name: Run Lint Check

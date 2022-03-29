@@ -99,6 +99,7 @@ func (c *Client) Post(ctx context.Context, url string, body io.Reader, opts ...O
 // to be closed, if returned error is nil, do method returns a non nil *http.Response, like http.Response, it is
 // user's responsibility to close the response body.
 
+// nolint: gocyclo
 func (c *Client) Do(req *http.Request, opts ...Option) (*http.Response, error) {
 	requestOpts := c.options
 	for _, o := range opts {

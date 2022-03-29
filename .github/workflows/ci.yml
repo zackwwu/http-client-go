@@ -17,10 +17,11 @@ jobs:
   lint:
     name: go-lint
     runs-on: ubuntu-latest
-    container:
-      image: golang:alpine3.15
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/setup-go@v3
+        with:
+          go-version: '^1.17'
       - name: Setup Lint Check Environment
         run: |
           go get golang.org/x/tools/cmd/goimports

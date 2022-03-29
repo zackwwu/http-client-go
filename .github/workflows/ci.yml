@@ -26,4 +26,4 @@ jobs:
           go get golang.org/x/tools/cmd/goimports
           go get github.com/golangci/golangci-lint/cmd/golangci-lint
       - name: Run Lint Check
-        run: make lint
+        run: golangci-lint run

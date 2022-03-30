@@ -57,10 +57,6 @@ eval-lint-targets:
 	$(eval LINT_TARGETS := $(shell find . -type d \( -path ./vendor -o -name mocks \) -prune -o -name "*.go"))
 
 go-lint:
-	@ gofmt -l -w $(LINT_TARGETS)
-	@# NB: requires `go get golang.org/x/tools/cmd/goimports`
-	@ goimports -l -w $(LINT_TARGETS)
-	@# NB: requires go get github.com/golangci/golangci-lint/cmd/golangci-lint
 	golangci-lint run
 
 go-lint-check: eval-lint-targets

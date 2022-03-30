@@ -34,7 +34,7 @@ help:
 go-test:
 	@echo "Running tests..."
 	@go test -v ./... 2>&1 | \
-		sed -lE "/(.*)PASS(.*)/s//\1$(COL_GREEN)PASS$(COL_RESET)\2/ ; /(.*)FAIL(.*)/s//\1$(COL_RED)FAIL$(COL_RESET)\2/ ; /=== (RUN.*)/s//=== $(COL_CYAN)\1$(COL_RESET)/ ; /(\?.*)/s//$(COL_GREY)\1$(COL_RESET)/ ; /^(#.*)/s//$(COL_RED)\1$(COL_RESET)/"
+		sed -E "/(.*)PASS(.*)/s//\1$(COL_GREEN)PASS$(COL_RESET)\2/ ; /(.*)FAIL(.*)/s//\1$(COL_RED)FAIL$(COL_RESET)\2/ ; /=== (RUN.*)/s//=== $(COL_CYAN)\1$(COL_RESET)/ ; /(\?.*)/s//$(COL_GREY)\1$(COL_RESET)/ ; /^(#.*)/s//$(COL_RED)\1$(COL_RESET)/"
 
 go-test-cov:
 	@echo "Running tests..."

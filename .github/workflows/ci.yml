@@ -16,5 +16,7 @@ jobs:
         password: ${{secrets.DOCKER_PASSWORD}}
     steps:
       - uses: actions/checkout@v3
+      - name: go-lint
+        run: make lint
       - name: go-test
         run: make test

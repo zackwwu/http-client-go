@@ -1,0 +1,23 @@
+name: ci
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+
+jobs:
+  validation:
+    name: validation
+    runs-on: ubuntu-latest
+    container:
+      image: zackwu1105/golang-dev:de3677
+      credentials:
+        username: ${{secrets.DOCKER_USER}}
+        password: ${{secrets.DOCKER_PASSWORD}}
+    steps:
+      - uses: actions/checkout@v3
+      - name: go-test
+        run: make test
+      - name: go-lint
+        run: make lint
+

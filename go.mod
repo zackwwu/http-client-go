@@ -1,4 +1,4 @@
-module github.com/zackwwu/http-client-go.git
+module github.com/zackwwu/http-client-go
 
 go 1.20
 

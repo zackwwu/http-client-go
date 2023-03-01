@@ -15,7 +15,7 @@ import (
 	"github.com/opentracing/opentracing-go/mocktracer"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	client "github.com/zackwwu/http-client-go.git"
+	client "github.com/zackwwu/http-client-go"
 )
 
 type testReadSeekCloser struct {

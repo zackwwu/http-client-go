@@ -1,6 +1,6 @@
 module github.com/zackwwu/http-client-go.git
 
-go 1.17
+go 1.20
 
 require (
 	github.com/kamilsk/retry/v5 v5.0.0-rc8

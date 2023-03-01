@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/http/httptest"
 	"strings"
@@ -40,7 +40,7 @@ func generateMockServer(t *testing.T, method string, reqBody string, spanInjecte
 	return httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		require.Equal(t, method, r.Method)
 
-		body, err := ioutil.ReadAll(r.Body)
+		body, err := io.ReadAll(r.Body)
 		require.NoError(t, err)
 		require.Equal(t, reqBody, string(body))
 
@@ -173,7 +173,7 @@ func TestDo(t *testing.T) {
 
 			require.NotNil(t, r.Body)
 
-			reqBody, err := ioutil.ReadAll(r.Body)
+			reqBody, err := io.ReadAll(r.Body)
 			require.NoError(t, err)
 			require.Equal(t, body, string(reqBody))
 
@@ -212,7 +212,7 @@ func TestDo(t *testing.T) {
 		totalAttemptCount := 2
 
 		server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-			reqBody, err := ioutil.ReadAll(r.Body)
+			reqBody, err := io.ReadAll(r.Body)
 			require.NoError(t, err)
 			require.Equal(t, body, string(reqBody))
 
@@ -246,7 +246,7 @@ func TestDo(t *testing.T) {
 		totalAttemptCount := 3
 
 		server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-			reqBody, err := ioutil.ReadAll(r.Body)
+			reqBody, err := io.ReadAll(r.Body)
 			require.NoError(t, err)
 			require.Equal(t, body, string(reqBody))
 
@@ -298,7 +298,7 @@ func TestDo(t *testing.T) {
 		req, err := http.NewRequestWithContext(ctx, http.MethodGet, server.URL, nil)
 		require.NoError(t, err)
 
-		resp, err := testClient.Do(req) // nolint: bodyclose
+		resp, err := testClient.Do(req) //nolint: bodyclose
 
 		assert.Error(t, err)
 		assert.Equal(t, context.DeadlineExceeded, err)

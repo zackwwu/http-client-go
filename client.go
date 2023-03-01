@@ -37,7 +37,7 @@ type Client struct {
 
 func New(opts ...Option) *Client {
 	// it is fine to use a weak random number generator in this  scenario
-	generator := rand.New(rand.NewSource(time.Now().UnixNano())) // nolint: gosec
+	generator := rand.New(rand.NewSource(time.Now().UnixNano())) //nolint: gosec
 
 	clientOpts := options{}
 
@@ -99,8 +99,7 @@ func (c *Client) Post(ctx context.Context, url string, body io.Reader, opts ...O
 // to be closed, if returned error is nil, do method returns a non nil *http.Response, like http.Response, it is
 // user's responsibility to close the response body.
 
-// nolint: gocyclo
-func (c *Client) Do(req *http.Request, opts ...Option) (*http.Response, error) {
+func (c *Client) Do(req *http.Request, opts ...Option) (*http.Response, error) { //nolint: gocyclo
 	requestOpts := c.options
 	for _, o := range opts {
 		o.apply(&requestOpts, c.generator)
@@ -160,7 +159,7 @@ func (c *Client) Do(req *http.Request, opts ...Option) (*http.Response, error) {
 
 		aReq := req.WithContext(aCtx)
 
-		resp, aErr = c.client.Do(aReq) // nolint: bodyclose
+		resp, aErr = c.client.Do(aReq) //nolint: bodyclose
 		attemptCount++
 		if aErr != nil {
 			if cancelFunc != nil {
